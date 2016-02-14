@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -17,13 +18,15 @@ public class Compte {
 	
 	@Id
 	@GeneratedValue
-	private int id;
+	private Long id;
+	
 	private String nom;
 	private String prenom;
 	
 	private String mail;
 	private Date dateNaissance;
 	
+	@OneToMany
 	private List<Chaine> chaines;
 	
 	public Compte(String nom, String prenom, String mail, String dateNaissance) {
@@ -84,6 +87,10 @@ public class Compte {
 
 	public void setChaines(List<Chaine> chaines) {
 		this.chaines = chaines;
+	}
+	
+	public int getID(){
+		return id;
 	}
 	
 }
