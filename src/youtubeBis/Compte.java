@@ -89,8 +89,9 @@ public class Compte {
 		this.chaines = chaines;
 	}
 	
-	public int getID(){
+	public Long getID(){
 		return id;
 	}
+
 	
 }

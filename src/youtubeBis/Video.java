@@ -1,11 +1,15 @@
 package youtubeBis;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
-public class Video {
+public class Video extends Interactionnable {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -42,5 +46,9 @@ public class Video {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public void like() {
+		interactions.add(new Like());
 	}
 }
