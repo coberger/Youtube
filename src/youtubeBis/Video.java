@@ -6,7 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Video extends Interactionnable {
@@ -15,13 +16,23 @@ public class Video extends Interactionnable {
 	private Long id;
 	
 	private String name;
+	
 	private Categorie categorie;
+	
 	private String url;
+	
+	@ManyToOne
+	private Chaine chaine;
+	
+	
+	@ManyToMany
+	private List<Playlist> playlist;
 	
 	public Video(String n, Categorie cat, String u) {
 		name = n;
 		categorie = cat;
 		url=u;
+		this.playlist = new ArrayList<Playlist>();
 	}
 
 	public String getName() {

@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity
@@ -21,12 +24,15 @@ public class Compte {
 	private Long id;
 	
 	private String nom;
+	
 	private String prenom;
 	
 	private String mail;
+	
+	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "compte")
 	private List<Chaine> chaines;
 	
 	public Compte(String nom, String prenom, String mail, String dateNaissance) {

@@ -3,9 +3,11 @@ package youtubeBis;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -15,10 +17,15 @@ public class Chaine {
 	private Long id;
 	
 	private String nom;
-	@OneToMany
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "chaine")
 	private List<Video> videos;
-	@OneToMany
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "chaine")
 	private List<Playlist> playlists;
+	
+	@ManyToOne
+	private Compte compte;
 	
 	public Chaine(String nom) {
 		this.nom = nom;
