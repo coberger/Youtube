@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PostLoad;
+import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
 
 @Entity
 public class Playlist {
@@ -26,6 +29,15 @@ public class Playlist {
 	public Playlist(String n) {
 		nom = n;
 		videos = new ArrayList<Video>(); 
+	}
+	
+	@PostLoad
+	@PostPersist
+	@PostUpdate
+	public Video ajouterVideo(Video video) {
+		videos.add(video);
+		return video;
+		
 	}
 
 }

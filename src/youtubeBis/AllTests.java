@@ -7,21 +7,18 @@ import javax.persistence.PersistenceContext;
 import junit.framework.TestCase;
 
 
-@Stateless
+
 public class AllTests extends TestCase {
 	
-	@PersistenceContext
-    private EntityManager entityManager;
 	
 	public void tests(){
 		
 		
-		Compte compte = new Compte("Nom","Prenom","my@adress.com","04/01/1998");
+		Compte compte = new Compte("Username","Nom","Prenom","my@adress.com","04/01/1998");
 		assertEquals("Nom", compte.getNom());
 		assertEquals("Prenom", compte.getPrenom());
 		assertEquals("my@adress.com", compte.getMail());
 		//assertEquals("04/01/1998", compte.getDateNaissance());
-		entityManager.persist(compte);
 		System.out.println(compte.getID());
 		
 		

@@ -12,6 +12,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.PostLoad;
+import javax.persistence.PostPersist;
+import javax.persistence.PostUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -22,6 +25,8 @@ public class Compte {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	private String userName;
 	
 	private String nom;
 	
@@ -35,7 +40,8 @@ public class Compte {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "compte")
 	private List<Chaine> chaines;
 	
-	public Compte(String nom, String prenom, String mail, String dateNaissance) {
+	public Compte(String userName,String nom, String prenom, String mail, String dateNaissance) {
+		this.userName = userName;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.mail = mail;
@@ -48,7 +54,10 @@ public class Compte {
 		
 		this.chaines = new ArrayList<Chaine>();
 	}
-
+	
+	@PostLoad
+	@PostPersist
+	@PostUpdate
 	public Chaine ajouterChaine(String nomChaine) {
 		Chaine chaine = new Chaine(nomChaine);
 		chaines.add(chaine);
