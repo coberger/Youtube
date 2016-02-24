@@ -11,9 +11,6 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Video extends Interactionnable {
-	@Id
-	@GeneratedValue
-	private Long id;
 	
 	private String name;
 	
@@ -27,7 +24,7 @@ public class Video extends Interactionnable {
 	
 	@ManyToMany
 	private List<Playlist> playlist;
-	
+	public Video(){}
 	public Video(String n, Categorie cat, String u) {
 		name = n;
 		categorie = cat;

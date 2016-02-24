@@ -40,6 +40,8 @@ public class Compte {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "compte")
 	private List<Chaine> chaines;
 	
+	public Compte(){}
+	
 	public Compte(String userName,String nom, String prenom, String mail, String dateNaissance) {
 		this.userName = userName;
 		this.nom = nom;

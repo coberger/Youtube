@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui"> 
+<h:head>
+	<meta charset="UTF-8"/>
+   <title>Youtube</title>
+   <h:outputStylesheet library="css" name="css-core.css"  />
+</h:head>
+<h:body>
+	<div class="header">
+		<div class="main-header">
+			<a href="/youtubeBis"><h:graphicImage class="logo" value="https://www.youtube.com/yt/brand/media/image/YouTube-logo-full_color.png"/></a>
+			<h:form action="">
+				<h:inputText name="searchValue" />
+				<h:commandButton type="submit" value="Search"/>
+			</h:form>
+			<div class="top-nav-right">
+				<a href="/youtubeBis/login/login.xhtml">Mettre en ligne</a>
+				<a class="btn-connect" href="/youtubeBis/login/login.xhtml">Connexion</a>
+			</div>
+		</div>
+	</div>
+	<div class="left-nav">
+		<ul class="guide_list">
+			<li class="current"><a href="/youtubeBis">Accueil</a></li>
+			<li><a href="">Ma chaîne</a></li>
+			<li><a href="">Tendances</a></li>
+			<li><a href="">Abonnement</a></li>
+			<li><a href="">Historique</a></li>
+			<li><a href="">A regarder plus tard</a></li>
+		</ul>
+		<hr/>
+		<ul class="library_list">
+			<li class="list_title"><a href="">Bibliothèque</a></li>
+			<li><a href="">Ma chaîne</a></li>
+			<li><a href="">Tendances</a></li>
+			<li><a href="">Abonnement</a></li>
+			<li><a href="">Historique</a></li>
+			<li><a href="">A regarder plus tard</a></li>
+		</ul>
+		<hr/>
+		<ul class="subscription_list">
+			<li class="list_title"><a href="">Abonnements</a></li>
+			
+		</ul>
+		<hr/>
+		<ul>
+			<li><a href="">Parcourir les chaînes</a></li>
+			<li><a href="">Gérer les abonnements</a></li>
+		</ul>
+
+	</div>
+	<div>
+		<div class="top-nav">
+			<ul>
+				<li><a class="current" href="">Accueil</a></li>
+				<li><a href="">Tendances</a></li>
+			</ul>
+		</div>
+		<div class="main-block">
+		
+			<ul>
+			    <ui:repeat value="#{videoBean.videos}" var="video">
+			    	<h:panelGrid columns="3">
+			        <li>
+			            <h:link value="#{video.url}" outcome="video">
+			                <f:param name="url" value="#{video.name}" />
+			            </h:link>
+			        </li>
+			        </h:panelGrid>
+			    </ui:repeat>
+			</ul>
+	
+		</div>
+	</div>
+</h:body>	
+</html>

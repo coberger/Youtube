@@ -13,7 +13,12 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public class Interactionnable {
+
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	@OneToMany
-	public List<Interaction> interactions = new ArrayList<Interaction>();
+	protected List<Interaction> interactions = new ArrayList<Interaction>();
 	
 }

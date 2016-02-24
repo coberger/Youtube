@@ -30,6 +30,8 @@ public class Chaine {
 	@ManyToOne
 	private Compte compte;
 	
+	public Chaine(){}
+	
 	public Chaine(String nom) {
 		this.nom = nom;
 		this.videos = new ArrayList<Video>();

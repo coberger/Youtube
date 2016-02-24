@@ -26,6 +26,8 @@ public class Playlist {
 	@ManyToMany
 	private List<Video> videos;
 
+	public Playlist(){}
+	
 	public Playlist(String n) {
 		nom = n;
 		videos = new ArrayList<Video>(); 

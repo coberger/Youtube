@@ -13,6 +13,8 @@ public class Interaction {
 	
 	private String type;
 
+	public Interaction(){}
+	
 	public Interaction(String type) {
 		this.type = type;
 	}

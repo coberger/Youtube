@@ -8,12 +8,39 @@
 	xmlns:cc="http://java.sun.com/jsf/composite"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Login page</title>
+	<title>Inscription</title>
 </h:head>
 <h:body>
-	<h:form id="loginForm">
-		<p:dialog header="Login to Youtube" visible="true" resizable="false">
+	<h:form id="signinForm">
+		<p:dialog header="Sign in to Youtube" visible="true" resizable="false">
 			<h:panelGrid columns="3">
+			
+				<h:outputText value="Firstname:"/>
+				<p:inputText id="firstname"
+					value="" required="true"
+					label="Firstname"/>
+				<p:message for="firstname" />
+			
+				<h:outputText value="Lastname:"/>
+				<p:inputText id="lastname"
+					value="" required="true"
+					label="Lastname"/>
+				<p:message for="lastname" />
+				
+				<h:outputText value="Mail adress:"/>
+				<p:inputText id="mail"
+					value="" required="true"
+					label="mail"/>
+				<p:message for="mail" />
+				
+				<h:outputText value="Birth date:"/>
+				<p:inputText id="birth"
+					value="" required="true"
+					label="birth">
+						<f:convertDateTime pattern="dd/MM/yyyy"/> 
+					</p:inputText>
+				<p:message for="birth" />
+			
 				<h:outputText value="Username:"/>
 				<p:inputText id="username"
 					value="" required="true"

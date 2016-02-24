@@ -10,7 +10,7 @@ public class Categorie {
 	@GeneratedValue
 	private Long id;
 	private String nom;
-	
+	public Categorie(){}
 	public Categorie(String n) {
 		nom = n;
 	}
