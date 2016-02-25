@@ -9,12 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PostLoad;
-import javax.persistence.PostPersist;
-import javax.persistence.PostUpdate;
 
 @Entity
-public class Chaine {
+public class Chaine extends Interactionnable {
 	@Id
 	@GeneratedValue
 	private Long id;
@@ -62,9 +59,7 @@ public class Chaine {
 		this.playlists = playlists;
 	}
 	
-	@PostLoad
-	@PostPersist
-	@PostUpdate
+	
 	public Video ajouterVideo(String name, String categorie, String url) {
 		Video video = new Video(name, new Categorie(categorie), url);
 		videos.add(video);
@@ -72,14 +67,18 @@ public class Chaine {
 		
 	}
 	
-	@PostLoad
-	@PostPersist
-	@PostUpdate
 	public Playlist ajouterPlaylist(String name) {
 		Playlist playlist = new Playlist(name);
 		playlists.add(playlist);
 		return playlist;
-		
+	}
+	
+	public Compte getCompte(){
+		return compte;
+	}
+	
+	public void ajouterAbonnement(String userName){
+		interactions.add(new Abonnement(userName));
 	}
 	
 }

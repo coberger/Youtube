@@ -28,6 +28,8 @@ public class Compte {
 	
 	private String userName;
 	
+	private String password;
+	
 	private String nom;
 	
 	private String prenom;
@@ -42,7 +44,7 @@ public class Compte {
 	
 	public Compte(){}
 	
-	public Compte(String userName,String nom, String prenom, String mail, String dateNaissance) {
+	public Compte(String userName, String passwd, String nom, String prenom, String mail, String dateNaissance) {
 		this.userName = userName;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -55,11 +57,9 @@ public class Compte {
 		}
 		
 		this.chaines = new ArrayList<Chaine>();
+		this.password = passwd;
 	}
 	
-	@PostLoad
-	@PostPersist
-	@PostUpdate
 	public Chaine ajouterChaine(String nomChaine) {
 		Chaine chaine = new Chaine(nomChaine);
 		chaines.add(chaine);

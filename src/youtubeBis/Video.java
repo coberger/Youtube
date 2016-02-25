@@ -12,6 +12,10 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Video extends Interactionnable {
 	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
 	private String name;
 	
 	private Categorie categorie;
@@ -58,5 +62,17 @@ public class Video extends Interactionnable {
 
 	public void like() {
 		interactions.add(new Like());
+	}
+	
+	public void dislike() {
+		interactions.add(new Dislike());
+	}
+	
+	public void comment(String com) {
+		interactions.add(new Commentaire(com));
+	}
+	
+	public Compte getCompte(){
+		return chaine.getCompte();
 	}
 }

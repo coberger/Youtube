@@ -33,13 +33,13 @@ public class Playlist {
 		videos = new ArrayList<Video>(); 
 	}
 	
-	@PostLoad
-	@PostPersist
-	@PostUpdate
 	public Video ajouterVideo(Video video) {
 		videos.add(video);
 		return video;
-		
+	}
+	
+	public Compte getCompte(){
+		return chaine.getCompte();
 	}
 
 }
