@@ -11,9 +11,9 @@ import javax.persistence.PersistenceContext;
 public class AllTests {//extends TestCase {
 	
 	
-	public void tests(){
+	public void tests() throws ClassNotFoundException{
 		
-		
+		Class.forName("org.hsqldb.jdbc.JDBCDriver");
 		Compte compte = new Compte("Username","Nom","Prenom","my@adress.com","04/01/1998");
 		//assertEquals("Nom", compte.getNom());
 		//assertEquals("Prenom", compte.getPrenom());

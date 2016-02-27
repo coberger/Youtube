@@ -64,18 +64,8 @@
 			</ul>
 		</div>
 		<div class="main-block">
-		
-			<ul>
-			    <ui:repeat value="#{videoBean.videos}" var="video">
-			    	<h:panelGrid columns="3">
-			        <li>
-			            <h:link value="#{video.url}" outcome="video">
-			                <f:param name="url" value="#{video.name}" />
-			            </h:link>
-			        </li>
-			        </h:panelGrid>
-			    </ui:repeat>
-			</ul>
+		<h1>catégories : #{videoBean.categ}</h1>  
+			
 	
 		</div>
 	</div>

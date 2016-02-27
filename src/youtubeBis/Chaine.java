@@ -72,14 +72,14 @@ public class Chaine {
 		
 	}
 	
-	@PostLoad
-	@PostPersist
-	@PostUpdate
-	public Playlist ajouterPlaylist(String name) {
-		Playlist playlist = new Playlist(name);
-		playlists.add(playlist);
-		return playlist;
-		
-	}
+//	@PostLoad
+//	@PostPersist
+//	@PostUpdate
+//	public Playlist ajouterPlaylist(String name) {
+//		Playlist playlist = new Playlist(name);
+//		playlists.add(playlist);
+//		return playlist;
+//		
+//	}
 	
 }

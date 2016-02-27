@@ -1,5 +1,6 @@
 package youtubeBis;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Video extends Interactionnable {
-	
+public class Video extends Interactionnable implements Serializable{
+		
 	private String name;
 	
 	private Categorie categorie;
