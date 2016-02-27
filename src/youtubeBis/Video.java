@@ -15,6 +15,7 @@ public class Video extends Interactionnable implements Serializable{
 		
 	private String name;
 	
+	@ManyToOne
 	private Categorie categorie;
 	
 	private String url;
