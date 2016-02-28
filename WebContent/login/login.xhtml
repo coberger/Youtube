@@ -12,28 +12,28 @@
 </h:head>
 <h:body>
 	<h:form id="loginForm">
-		<p:dialog header="Login to Youtube" visible="true" resizable="false">
+		<p:dialog header="Se Connecter" visible="true" resizable="false" closable="false">
 			<h:panelGrid columns="3">
-				<h:outputText value="Username:"/>
+				<h:outputText value="Nom d'utilisateur :"/>
 				<p:inputText id="username"
-					value="" required="true"
-					label="Username"/>
+					value="#{compteBean.currentCompte.userName}" required="true"
+					label="username"/>
 				<p:message for="username" />
 				
 				<h:outputText value="Password:"/>
 				<p:password id="password"
-					value="" required="true"
+					value="#{compteBean.currentCompte.password}" required="true"
 					label="Password"/>
 				<p:message for="password" />
 				
-				<h:commandButton type="submit" value="Connexion" />
+				<h:commandButton type="submit" value="Connexion" action="#{compteBean.connexion}"/>
 			</h:panelGrid>
-			
-			
+			<p>Pas de compte? <a href="/youtubeBis/login/signin.xhtml">S'inscrire</a></p>
 			
 			<p:messages globalOnly="true"/>
 		</p:dialog>
 	</h:form>
 
+	
 </h:body>
 </html>

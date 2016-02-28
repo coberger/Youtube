@@ -1,5 +1,6 @@
 package youtubeBis;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import javax.persistence.PostPersist;
 import javax.persistence.PostUpdate;
 
 @Entity
-public class Chaine {
+public class Chaine implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id;

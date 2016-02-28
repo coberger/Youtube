@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,7 +16,7 @@ public class Video extends Interactionnable implements Serializable{
 		
 	private String name;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Categorie categorie;
 	
 	private String url;
@@ -27,6 +28,7 @@ public class Video extends Interactionnable implements Serializable{
 	@ManyToMany
 	private List<Playlist> playlist;
 	public Video(){}
+	
 	public Video(String n, Categorie cat, String u) {
 		name = n;
 		categorie = cat;

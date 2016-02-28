@@ -1,5 +1,6 @@
 package youtubeBis;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public class Interactionnable {
+public class Interactionnable implements Serializable{
 
 	@Id
 	@GeneratedValue
@@ -21,4 +22,7 @@ public class Interactionnable {
 	@OneToMany
 	protected List<Interaction> interactions = new ArrayList<Interaction>();
 	
+	public Long getId(){
+		return id;
+	}
 }

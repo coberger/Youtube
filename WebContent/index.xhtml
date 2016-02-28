@@ -16,26 +16,51 @@
 	<div class="header">
 		<div class="main-header">
 			<a href="/youtubeBis"><h:graphicImage class="logo" value="https://www.youtube.com/yt/brand/media/image/YouTube-logo-full_color.png"/></a>
-			<h:form action="">
+			<h:form class="form-search" action="">
 				<h:inputText name="searchValue" />
 				<h:commandButton type="submit" value="Search"/>
 			</h:form>
 			<div class="top-nav-right">
-				<a href="/youtubeBis/login/login.xhtml">Mettre en ligne</a>
+			<c:if test="#{empty compteBean.currentCompte.userName}">
 				<a class="btn-connect" href="/youtubeBis/login/login.xhtml">Connexion</a>
+			</c:if>
+			
+			<c:if test="#{not empty compteBean.currentCompte.userName}">
+				<a href="/youtubeBis/login/login.xhtml">Mettre en ligne</a>
+				<h:form class="form-connect">
+					<h:commandButton class="btn-connect" value="Déconnexion"  action="#{compteBean.deconnexion}"/>
+				</h:form>
+				<!-- <a class="btn-connect" href="/youtubeBis/login/login.xhtml">Déconnexion</a> -->
+			</c:if>
 			</div>
 		</div>
 	</div>
 	<div class="left-nav">
 		<ul class="guide_list">
 			<li class="current"><a href="/youtubeBis">Accueil</a></li>
-			<li><a href="">Ma chaîne</a></li>
+			
+			<c:if test="#{not empty compteBean.currentCompte.userName}">
+				<li><a href="">Ma chaîne</a></li>
+			</c:if>
 			<li><a href="">Tendances</a></li>
-			<li><a href="">Abonnement</a></li>
-			<li><a href="">Historique</a></li>
-			<li><a href="">A regarder plus tard</a></li>
+			
+			<c:if test="#{not empty compteBean.currentCompte.userName}">
+				<li><a href="">Abonnement</a></li>
+				<li><a href="">Historique</a></li>
+				<li><a href="">A regarder plus tard</a></li>
+			</c:if>
 		</ul>
 		<hr/>
+		
+		<c:if test="#{empty compteBean.currentCompte.userName}">
+			<ul>
+				<ui:repeat value="#{categorieBean.categories}" var="categorie">
+				    <li><a href="">#{categorie.nom}</a></li>
+				</ui:repeat>
+			</ul>
+		</c:if>
+		
+			<c:if test="#{not empty compteBean.currentCompte.userName}">
 		<ul class="library_list">
 			<li class="list_title"><a href="">Bibliothèque</a></li>
 			<li><a href="">Ma chaîne</a></li>
@@ -54,6 +79,8 @@
 			<li><a href="">Parcourir les chaînes</a></li>
 			<li><a href="">Gérer les abonnements</a></li>
 		</ul>
+		</c:if>
+		
 
 	</div>
 	<div>
@@ -64,9 +91,15 @@
 			</ul>
 		</div>
 		<div class="main-block">
-		<h1>catégories : #{videoBean.categ}</h1>  
-			
-	
+		<ui:repeat value="#{videoBean.videos}" var="o">
+			<div class="video">
+				<p:media value="#{o.url}" width="350" height="250" player="flash"/>
+				<a href="">#{o.name}</a>
+				<h:form>
+					<h:commandButton value="Like" action="/"/>
+				</h:form>
+			</div>
+		</ui:repeat>
 		</div>
 	</div>
 </h:body>	

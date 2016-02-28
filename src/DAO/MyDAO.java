@@ -16,17 +16,10 @@ public class MyDAO {
             .createEntityManagerFactory("bdd_youtube");
 	
 	@PersistenceContext(unitName = "bdd_youtube", type = PersistenceContextType.EXTENDED)
-    private EntityManager entityManager;
+    protected EntityManager em;
  
-    public static EntityManager createEntityManager() {
-        return emf.createEntityManager();
-    }
- 
-    public static void closeEntityManager() {
-        emf.close();
-    }
-    
-    public void addMovie(Categorie categorie) throws Exception {
-        entityManager.persist(categorie);
-    }
+	protected MyDAO(){
+		em = emf.createEntityManager();
+	}
+	
 }

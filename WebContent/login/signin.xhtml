@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Inscription</title>
+</h:head>
+<h:body>
+	<h:form id="signinForm">
+		<p:dialog header="S'incrire" visible="true" resizable="false" closable="false">
+			<h:panelGrid columns="3">
+			
+				<h:outputText value="Prénom :"/>
+				<p:inputText id="prenom"
+					value="#{compteBean.currentCompte.prenom}" required="true"
+					label="prenom"/>
+				<p:message for="prenom" />
+			
+				<h:outputText value="Nom :"/>
+				<p:inputText id="nom"
+					value="#{compteBean.currentCompte.nom}" required="true"
+					label="nom"/>
+				<p:message for="nom" />
+				
+				<h:outputText value="Adresse mail :"/>
+				<p:inputText id="mail"
+					value="#{compteBean.currentCompte.mail}" required="true"
+					label="mail"/>
+				<p:message for="mail" />
+				
+				<h:outputText value="Date de naissance :"/>
+				<p:inputText id="dateNaissance"
+					value="#{compteBean.currentCompte.dateNaissance}" required="true"
+					label="dateNaissance">
+						<f:convertDateTime pattern="dd/MM/yyyy"/> 
+					</p:inputText>
+				<p:message for="dateNaissance" />
+			
+				<h:outputText value="Nom d'utilisateur :"/>
+				<p:inputText id="userName"
+					value="#{compteBean.currentCompte.userName}" required="true"
+					label="userName"/>
+				<p:message for="userName" />
+				
+				<h:outputText value="Mot de passe :"/>
+				<p:password id="password"
+					value="#{compteBean.currentCompte.password}" required="true"
+					label="password"/>
+				<p:message for="password" />
+				
+				<h:commandButton type="submit" value="S'inscrire" action="#{compteBean.inscrire}" />
+			</h:panelGrid>
+			
+			<p:messages globalOnly="true"/>
+		</p:dialog>
+	</h:form>
+
+</h:body>
+</html>

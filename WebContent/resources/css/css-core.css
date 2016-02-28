@@ -44,7 +44,7 @@ html
 
 }
 
-.header form{
+.header form.form-search{
 	display: inline-block;
 	vertical-align: top;
 	margin-top: 20px;
@@ -102,7 +102,7 @@ html
 }
 
 
-.top-nav-right a{
+.top-nav-right a, .top-nav-right input{
 	display: inline-block;
     border: solid 1px transparent;
     padding: 7px 7px;
@@ -121,6 +121,12 @@ html
     border-color: #d3d3d3;
     background: #f8f8f8;
     color: #333;
+}
+
+
+.form-connect{
+	vertical-align: top;
+	margin-top: 0!important;
 }
 
 .btn-connect{
@@ -201,6 +207,8 @@ html
     font-size: 12px;
     display: block;
     margin: 1px;
+    min-width: 128px;
+    cursor: pointer;
 }
 
 .left-nav li a{
@@ -242,3 +250,25 @@ html
     min-height: 800px;
     background: whitesmoke;
 }
+
+
+.video{
+	display: inline-block;
+}
+
+.video object{
+	display: block;
+}
+
+.video a{
+	font-size: 150%;
+	color: #167ac6;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.video a:hover{
+	text-decoration: underline;
+}
+
+
