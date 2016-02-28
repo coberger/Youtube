@@ -42,4 +42,13 @@ public class VideoDAO extends MyDAO{
         allVideoQuery.executeUpdate();
         tx.commit();
 	}
+
+	public List<Video> findByName(String research) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		Query allVideoQuery = em.createQuery("select d from Video d WHERE d.name LIKE '%"+research+"%'");
+        List<Video> list = allVideoQuery.getResultList();
+        tx.commit();
+        return list;
+	}
 }

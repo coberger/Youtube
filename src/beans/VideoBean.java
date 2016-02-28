@@ -36,11 +36,20 @@ public class VideoBean implements Serializable{
         
         for(Video video : dao.getAllVideo()) {
         	videos.add(video);
-        }        
+        }
+        
+        getVideoByName("Adele");
     }
 	
     public List<Video> getVideos() {
         return videos;
+    }
+    
+    
+    public List<Video> getVideoByName(String research){
+    	VideoDAO dao = new VideoDAO();
+    	List<Video> result = dao.findByName(research);
+    	return result;
     }
     
     public void like(){
