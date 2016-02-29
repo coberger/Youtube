@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import youtubeBis.Categorie;
 import youtubeBis.Video;
 
 public class VideoDAO extends MyDAO{
@@ -18,6 +19,21 @@ public class VideoDAO extends MyDAO{
 		tx.begin();
         em.persist(v);
         tx.commit();
+	}
+	
+	public Video add(Video v, String categorie){
+		Categorie cat = null;
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		Query CategorieQuery = em.createQuery("select d from Categorie d where d.nom='"+categorie+"'");
+	    List<Categorie> cats = CategorieQuery.getResultList();
+	    if(!cats.isEmpty()){
+	    	cat = cats.get(0);
+	    }
+	    v.setCategorie(cat);
+	    em.persist(v);
+        tx.commit();
+        return v;
 	}
 	
 	public void add(List<Video> vs){

@@ -24,7 +24,6 @@
 			<c:if test="#{empty compteBean.currentCompte.userName}">
 				<a class="btn-connect" href="/youtubeBis/login/login.xhtml">Connexion</a>
 			</c:if>
-			
 			<c:if test="#{not empty compteBean.currentCompte.userName}">
 				<a href="/youtubeBis/app/addVideo.xhtml">Mettre en ligne</a>
 				<h:form class="form-connect">
@@ -79,32 +78,39 @@
 			<li><a href="">Gérer les abonnements</a></li>
 		</ul>
 		</c:if>
-		
-
 	</div>
 	<div>
-		<div class="top-nav">
-			<ul>
-				<li><a class="current" href="">Accueil</a></li>
-				<li><a href="/youtubeBis/app/tendances.xhtml">Tendances</a></li>
-			</ul>
-		</div>
-		<div class="main-block">
-		
-		<ui:repeat value="#{categorieBean.categories}" var="cat">
-			<p class="cat-name">#{cat.nom}</p>
-			<ui:repeat value="#{videoBean.videos}" var="o">
-				<c:if test="#{o.categorie.nom eq cat.nom}">
-					<div class="video">
-						<p:media value="#{o.url}" width="350" height="250" player="flash"/>
-						<a href="">#{o.name}</a>
-						<h:form>
-							<h:commandButton value="Like" action="#{videoBean.like(o.id)}"/>
-						</h:form>
-					</div>
-				</c:if>
-			</ui:repeat>
-		</ui:repeat>
+		<div class="main-block">	
+			<c:if test="#{not empty compteBean.currentCompte.userName}">
+				<h:form id="loginForm">
+					<p:dialog header="Ajouter une vidéo" draggable="false" visible="true" resizable="false" closable="false">
+						<h:panelGrid columns="3">
+							<h:outputText value="Nom :"/>
+							<p:inputText id="name"
+								value="#{videoBean.videoToAdd.name}" required="true"
+								label="name"/>
+							<p:message for="name"/>
+						
+							<p:outputLabel for="categorie" value="Catégorie:" />
+							
+					        <p:selectOneMenu id="categorie" value="#{videoBean.categorieName}" style="width:125px">
+					            <f:selectItem itemValue="" itemLabel="Selectionner une Catégorie"/>
+					            <f:selectItems value="#{categorieBean.categories}" var="cat" itemValue="#{cat.nom}" itemLabel="#{cat.nom}"/>
+					        </p:selectOneMenu>
+							
+							<h:outputText value="URL :"/>
+							<p:inputText id="url"
+								value="#{videoBean.videoToAdd.url}" required="true"
+								label="url"/>
+							<p:message for="url" />
+							
+							<h:commandButton type="submit" value="Ajouter la vidéo" action="#{videoBean.add}"/>
+						</h:panelGrid>
+						
+						<p:messages globalOnly="true"/>
+					</p:dialog>
+				</h:form>
+			</c:if>
 		</div>
 	</div>
 </h:body>	

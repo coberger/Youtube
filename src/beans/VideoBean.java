@@ -2,11 +2,14 @@ package beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
@@ -17,34 +20,29 @@ import youtubeBis.Categorie;
 import youtubeBis.Video;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class VideoBean implements Serializable{
 
+	private Video videoToAdd;
+	
+	private Long idCategorie = new Long(0);
+	
+	private String categorieName = "";
+	
 	private List<Video> videos;
+	private List<Video> tendances = new ArrayList<>();
 	
 	@PostConstruct
 	public void init(){
 		VideoDAO dao = new VideoDAO();
+		videoToAdd = new Video();
 		dao.deleteAll();
 		videos = new ArrayList<Video>();
-        Video v = new Video("Adele - Hello", new Categorie("Musique"), 
-        		"https://www.youtube.com/v/rYEDA3JcQqw");
-        dao.add(v);
-        Video v2 = new Video("Wazoo - Montferrand", new Categorie("Musique"), 
-        		"https://www.youtube.com/v/OPVrR9y-xZs");
-        dao.add(v2);
-        
+		
         for(Video video : dao.getAllVideo()) {
         	videos.add(video);
         }
-        
-        getVideoByName("Adele");
     }
-	
-    public List<Video> getVideos() {
-        return videos;
-    }
-    
     
     public List<Video> getVideoByName(String research){
     	VideoDAO dao = new VideoDAO();
@@ -52,7 +50,66 @@ public class VideoBean implements Serializable{
     	return result;
     }
     
-    public void like(){
+	public List<Video> getVideos() {
+        return videos;
+    }
+	
+	public List<Video> getTendances() {
+        return tendances;
+    }
+    
+    public void like(String id){
+    	
+    	// TODO : ajouter le like à la vidéo d'id id...
     	
     }
+    
+    public void getTendancesVideos(){
+    	tendances = new VideoDAO().getAllVideo();
+    }
+    
+    public String add(){
+    	VideoDAO dao = new VideoDAO();
+		videoToAdd = dao.add(videoToAdd, categorieName);
+    	videos.add(videoToAdd);
+    	videoToAdd = new Video();
+    	return "home";
+    }
+
+	public Video getVideoToAdd() {
+		return videoToAdd;
+	}
+
+	public void setVideoToAdd(Video videoToAdd) {
+		this.videoToAdd = videoToAdd;
+	}
+
+	/**
+	 * @return the idVideoToAdd
+	 */
+	public Long getIdCategorie() {
+		return idCategorie;
+	}
+
+	/**
+	 * @param idVideoToAdd the idVideoToAdd to set
+	 */
+	public void setIdCategorie(Long idCategorie) {
+		this.idCategorie = idCategorie;
+	}
+
+	/**
+	 * @return the categorieName
+	 */
+	public String getCategorieName() {
+		return categorieName;
+	}
+
+	/**
+	 * @param categorieName the categorieName to set
+	 */
+	public void setCategorieName(String categorieName) {
+		this.categorieName = categorieName;
+	}
+    
 }

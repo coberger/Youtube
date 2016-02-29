@@ -47,4 +47,25 @@ public class Categorie implements Serializable{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return id+"";
+	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return Integer.parseInt(id+"");
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof Categorie ? equals((Categorie)obj) : false;
+	}
+	
+	public boolean equals(Categorie obj){
+		return obj.getId() != null && getId() != null ? obj.getId().equals(this.getId()) : obj.getNom().equals(getNom());
+	}
 }

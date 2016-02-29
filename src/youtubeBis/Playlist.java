@@ -19,6 +19,7 @@ public class Playlist implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	private String nom;
 	
 	@ManyToOne

@@ -27,6 +27,8 @@ public class Video extends Interactionnable implements Serializable{
 	
 	@ManyToMany
 	private List<Playlist> playlist;
+	
+	
 	public Video(){}
 	
 	public Video(String n, Categorie cat, String u) {

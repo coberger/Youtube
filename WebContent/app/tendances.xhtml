@@ -9,13 +9,13 @@
 	xmlns:p="http://primefaces.org/ui"> 
 <h:head>
 	<meta charset="UTF-8"/>
-   <title>Youtube</title>
+   <title>Tendances</title>
    <h:outputStylesheet library="css" name="css-core.css"  />
 </h:head>
 <h:body>
 	<div class="header">
 		<div class="main-header">
-			<a href="/youtubeBis"><h:graphicImage class="logo" value="https://www.youtube.com/yt/brand/media/image/YouTube-logo-full_color.png"/></a>
+			<a href="/youtubeBis/"><h:graphicImage class="logo" value="https://www.youtube.com/yt/brand/media/image/YouTube-logo-full_color.png"/></a>
 			<h:form class="form-search" action="">
 				<h:inputText name="searchValue" />
 				<h:commandButton type="submit" value="Search"/>
@@ -26,22 +26,23 @@
 			</c:if>
 			
 			<c:if test="#{not empty compteBean.currentCompte.userName}">
-				<a href="/youtubeBis/app/addVideo.xhtml">Mettre en ligne</a>
+				<a href="/youtubeBis/login/login.xhtml">Mettre en ligne</a>
 				<h:form class="form-connect">
 					<h:commandButton class="btn-connect" value="Déconnexion"  action="#{compteBean.deconnexion}"/>
 				</h:form>
+				<!-- <a class="btn-connect" href="/youtubeBis/login/login.xhtml">Déconnexion</a> -->
 			</c:if>
 			</div>
 		</div>
 	</div>
 	<div class="left-nav">
 		<ul class="guide_list">
-			<li class="current"><a href="/youtubeBis">Accueil</a></li>
+			<li><a href="/youtubeBis/">Accueil</a></li>
 			
 			<c:if test="#{not empty compteBean.currentCompte.userName}">
 				<li><a href="">Ma chaîne</a></li>
 			</c:if>
-			<li><a href="/youtubeBis/app/tendances.xhtml">Tendances</a></li>
+			<li class="current"><a href="/youtubeBis/app/tendances.xhtml">Tendances</a></li>
 			
 			<c:if test="#{not empty compteBean.currentCompte.userName}">
 				<li><a href="">Abonnement</a></li>
@@ -63,7 +64,7 @@
 		<ul class="library_list">
 			<li class="list_title"><a href="">Bibliothèque</a></li>
 			<li><a href="">Ma chaîne</a></li>
-			<li><a href="/youtubeBis/app/tendances.xhtml">Tendances</a></li>
+			<li><a href="">Tendances</a></li>
 			<li><a href="">Abonnement</a></li>
 			<li><a href="">Historique</a></li>
 			<li><a href="">A regarder plus tard</a></li>
@@ -83,17 +84,16 @@
 
 	</div>
 	<div>
+		<div class="main-block">
 		<div class="top-nav">
 			<ul>
-				<li><a class="current" href="">Accueil</a></li>
-				<li><a href="/youtubeBis/app/tendances.xhtml">Tendances</a></li>
+				<li><a href="/youtubeBis/">Accueil</a></li>
+				<li><a class="current" href="/youtubeBis/app/tendances.xhtml">Tendances</a></li>
 			</ul>
 		</div>
-		<div class="main-block">
-		
 		<ui:repeat value="#{categorieBean.categories}" var="cat">
 			<p class="cat-name">#{cat.nom}</p>
-			<ui:repeat value="#{videoBean.videos}" var="o">
+			<ui:repeat value="#{videoBean.tendances}" var="o">
 				<c:if test="#{o.categorie.nom eq cat.nom}">
 					<div class="video">
 						<p:media value="#{o.url}" width="350" height="250" player="flash"/>
